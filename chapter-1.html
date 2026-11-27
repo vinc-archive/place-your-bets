@@ -88,14 +88,12 @@
     }
     .chapter-body {
       font-size: 18px;
-      line-height: 1.8;
+      line-height: 1.62;
       color: var(--text-main);
     }
-    .scene-block {
-      margin-bottom: 32px;
-    }
-    .scene-block p {
-      margin-bottom: 14px;
+    .chapter-body p {
+      margin-bottom: 2px;
+      text-indent: 0;
     }
     .scene-divider {
       text-align: center;
@@ -103,7 +101,7 @@
       opacity: 0.45;
       font-size: 14px;
       letter-spacing: 0.6em;
-      margin: 28px 0;
+      margin: 22px 0;
     }
     .chapter-footer {
       margin-top: 64px;
@@ -143,7 +141,7 @@
       }
       .chapter-body {
         font-size: 16.5px;
-        line-height: 1.72;
+        line-height: 1.58;
       }
       .chapter-footer {
         flex-direction: column;
@@ -269,20 +267,18 @@
 
   <script>
     var raw = document.getElementById('rawText').value;
-    var blocks = raw.trim().split(/\n\s*\n/);
+    var lines = raw.trim().split('\n');
     var html = '';
 
-    for (var i = 0; i < blocks.length; i++) {
-      var lines = blocks[i].split('\n');
-      var paragraphs = '';
-      for (var j = 0; j < lines.length; j++) {
-        var line = lines[j].trim();
-        if (!line) continue;
-        var formattedLine = line.replace(/\*(.*?)\*/g, '<em>$1</em>');
-        paragraphs += '<p>' + formattedLine + '</p>';
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i].trim();
+      if (!line) continue;
+      if (line === '• • •' || line === '***') {
+        html += '<div class="scene-divider">• • •</div>';
+        continue;
       }
-      var divider = i < blocks.length - 1 ? '<div class="scene-divider">• • •</div>' : '';
-      html += '<div class="scene-block">' + paragraphs + '</div>' + divider;
+      var formattedLine = line.replace(/\*(.*?)\*/g, '<em>$1</em>');
+      html += '<p>' + formattedLine + '</p>';
     }
 
     document.getElementById('chapterBody').innerHTML = html;
