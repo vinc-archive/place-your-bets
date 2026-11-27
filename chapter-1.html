@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>1. Счастливчик — Place Your Bets</title>
+  <link rel="preconnect" href="https://googleapis.com">
+  <link rel="preconnect" href="https://gstatic.com" crossorigin>
+  <link href="https://googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0b0d0c;
+      --bg-felt: #101915;
+      --card-bg: #121514;
+      --gold: #d4af37;
+      --gold-dim: rgba(212, 175, 55, 0.25);
+      --text-main: #e4e1d8;
+      --text-muted: #8c8a82;
+      --border: rgba(255, 255, 255, 0.08);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+    }
+    body {
+      background-color: var(--bg-dark);
+      background-image: radial-gradient(circle at 50% 0%, var(--bg-felt) 0%, var(--bg-dark) 75%);
+      color: var(--text-main);
+      font-family: 'Lora', Georgia, serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      overflow-x: hidden;
+    }
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #8a6d1c, var(--gold));
+      width: 0%;
+      z-index: 1000;
+      transition: width 0.1s ease-out;
+    }
+    .main-wrapper {
+      width: 100%;
+      max-width: 680px;
+      padding: 64px 24px 96px;
+    }
+    .top-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .top-brand a {
+      text-decoration: none;
+      color: var(--gold);
+    }
+    .chapter-meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .chapter-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 44px;
+      font-weight: 600;
+      line-height: 1.15;
+      color: #f5f2eb;
+      margin-bottom: 38px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .chapter-body {
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--text-main);
+    }
+    .scene-block {
+      margin-bottom: 32px;
+    }
+    .scene-block p {
+      margin-bottom: 12px;
+      text-indent: 1.2em;
+    }
+    .scene-block p.dialogue {
+      text-indent: 0;
+    }
+    .scene-divider {
+      text-align: center;
+      color: var(--gold);
+      opacity: 0.45;
+      font-size: 14px;
+      letter-spacing: 0.6em;
+      margin: 28px 0;
+    }
+    .chapter-footer {
+      margin-top: 64px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .nav-btn {
+      text-decoration: none;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      transition: all 0.2s ease;
+    }
+    .nav-btn.primary {
+      border-color: var(--gold-dim);
+      color: var(--gold);
+    }
+    .nav-btn:hover {
+      border-color: var(--gold-dim);
+      color: var(--gold);
+      background: rgba(212, 175, 55, 0.08);
+    }
+    @media (max-width: 640px) {
+      .main-wrapper {
+        padding: 40px 20px 72px;
+      }
+      .chapter-title {
+        font-size: 36px;
+      }
+      .chapter-body {
+        font-size: 16.5px;
+        line-height: 1.72;
+      }
+      .chapter-footer {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+      }
+    }
+    @media print {
+      body { display: none !important; }
+    }
+  </style>
+</head>
+<body oncontextmenu="return false;" oncopy="return false;" oncut="return false;" ondragstart="return false;">
+
+  <div class="progress-bar" id="progressBar"></div>
+
+  <main class="main-wrapper">
+    <div class="top-brand">
+      <div><a href="index.html">Place Your Bets</a> · VIP Table № 4</div>
+      <div>by vinc-archive</div>
+    </div>
+
+    <div class="chapter-meta">Глава I</div>
+    <h1 class="chapter-title">1. Счастливчик</h1>
+
+    <div class="chapter-body" id="chapterBody"></div>
+
+    <div class="chapter-footer">
+      <a href="index.html" class="nav-btn">← К содержанию</a>
+      <a href="chapter-2.html" class="nav-btn primary">2. Ставка →</a>
+    </div>
+  </main>
+
+  <textarea id="rawText" style="display:none;">
+Макс терпеть не мог проигрывать. Особенно тогда, когда кому-то другому везло больше, чем ему.
+Особенно, когда рядом сидел сам Джордж Расселл: этот чёртов самодовольный британец, устроившийся за бархатным столом с лицом человека, которому судьба задолжала ещё пару выигрышей.
+Рядом с ним, абсолютно расслабленно развалившись на диване, сидел ещё один британец – Ландо. Его вечное присутствие напоминало скорее фоновый шум в баре, чем серьёзную игру. Норрис лениво гонял по дну стакана кубики льда, будто происходящее за столом было лучшим бесплатным шоу вечера. Он явно собирался проиграть пару тысяч просто веселья ради.
+Воздух в VIP-зале пропах дорогим табаком, эксклюзивным парфюмом, от которого у Макса уже начинала болеть голова, и напряжением, способным плавить металл.
+Джордж сидел расслабленно, машинально прокручивая на пальце тонкий серебристый перстень. Он лениво откинулся на спинку кожаного дивана, бросая на стол фишки так легко, будто это были не тысячи, а фантики от конфет.
+На долю секунды, как только Расселл делал очередную рискованную ставку на одинарный zero – упорно игнорируя соседний двойной ноль – крупье за столом, Пьер, едва заметно скривил губы, словно выпад Расселла казался ему верхом самонадеянности. Ну конечно, крупье ведь часто видывали подобные сценарии... Так ведь?
+Колесо закрутилось.
+И всё же Макс был готов поклясться, что крупье задержал взгляд на ставке Расселла на долю секунды дольше, чем следовало.
+Этого было недостаточно, чтобы обвинить кого-либо. Но достаточно, чтобы чувство неправильности впилось под кожу.
+
+С каждой новой победой аккуратная башня разноцветных фишек перед британцем становилась всё выше, постепенно превращаясь в откровенное издевательство.
+Макс с ненавистью уставился на россыпь фишек, которых осталось слишком мало.
+Он ведь специально сел рядом с Джорджем. Специально предложил играть вместе. Специально собирался доказать, что способен не уступать ему ни в чём.
+Но спустя три часа единственным, что он доказал, была удивительная способность проигрывать. Вместо восхищения он получал лишь стремительно худеющий кошелёк и абсолютное равнодушие.
+– Если тебя утешит, – Ландо лениво покрутил бокал, – ты сегодня хотя бы держишься очень стабильно.
+Макс молча покосился на него.
+– Стабильно проигрываешь.
+Норрис громко хмыкнул в самый неподходящий момент – как раз тогда, когда Макс с грохотом швырнул на сукно выжившую стопку фишек. Этот смешок... прозвучал как пощёчина, окончательно выводя голландца из себя, в то время как самому Ландо было абсолютно плевать на исход партии, ведь его главной целью на сегодня явно был не выигрыш, а возможность позлить остальных и лишний раз сбежать к барной стойке.
+Шарик сделал последний ленивый оборот, несколько раз нервно подпрыгнул между металлическими перегородками и с сухим щелчком замер.
+– Зеро, зелёное, – спокойно объявил Пьер.
+На несколько секунд за столом повисла тишина. Гасли молча выровнял стопку выигранных фишек идеально по краю стола, прежде чем подтолкнуть её к Джорджу.
+– Да вы издеваетесь... – сквозь зубы процедил Макс.
+Расселл лишь коротко усмехнулся, будто и сам не видел в происходящем ничего необычного. Он собрал выигрыш неспешно, почти лениво, словно подобный исход был самым естественным событием этого вечера.
+– Кажется, я заразился его удачей, – протянул Ландо.
+Спустя несколько секунд крупье подвинул часть банка и к нему. Норрис удивлённо моргнул, посмотрел сначала на фишки, потом на Джорджа и прыснул со смеху.
+– Это точно заразно. Пьер, скажи честно... у вас тут скидка на удачу для британцев?
+Пьер чуть приподнял голову.
+– Или ты наконец-то научился играть? – невозмутимо бросил Джордж.
+– Не порть момент, Расселл. Мне нравится версия с магией.
+
+Француз едва заметно постучал костяшкой пальца по краю стола, привычным движением подталкивая фишки к игрокам.
+– Ладно, – Джордж с тихим звоном опустил очередную стопку фишек поверх остальных. – Если тебя это настолько бесит, просто ставь так же, как я.
+Макс недоверчиво сощурился.
+– Серьёзно?
+– А почему нет? Хуже уже всё равно не будет.
+– Та ну… Не подсказывай ему, – фыркнул Ландо, лениво покачивая бокал. – Мне начинает нравиться этот сериал.
+– Тогда вам стоит заказать второй напиток.
+Спокойный голос Пьера прозвучал настолько неожиданно, что Ландо повернул голову к крупье. Француз даже не смотрел на него – не отрывая взгляда от колеса, машинально перебирал пальцами край стопки фишек в лотке. – Боюсь, шоу только начинается.
+Ландо прыснул.
+– Вот за это я тебя и люблю, Пьер.
+– Благодарю. Но это не взаимно.
+Джордж едва заметно опустил голову, пряча улыбку за краем бокала.
+Макс раздражённо закатил глаза.
+Они ещё и шутят...
+Перед Максом практически бесшумно опустился тяжёлый стакан.
+– Ваш виски.
+Шарль. Уже убрал поднос обратно под руку.
+Как и всегда, идеально выглаженная белая рубашка, чёрный жилет, серебристый поднос в руке и абсолютно невозмутимое, на первый взгляд, выражение лица.
+– Благодарю.
+Макс даже не посмотрел на него.
+Шарль, однако, не спешил уходить. Его взгляд всего на мгновение встретился со взглядом Пьера. Тот едва заметно качнул головой.
+Шарль выдохнул почти незаметно и лишь после этого спокойно направился обратно к бару.
+
+– Так же, как я, – повторил Джордж.
+Голландец наконец поднял голову.
+– Что?
+– Если хочешь выиграть.
+Расселл спокойно пожал плечами.
+– Просто ставь так же, как я.
+Пьер, раскладывавший фишки предыдущего банка, на долю секунды замер. Совсем чуть-чуть.
+Настолько, что заметить это мог только человек, уже ищущий подвох.
+Но мысль оборвалась раньше. Казалось, вот оно. Ферстаппен наконец-то понял.
+– А-а…
+Не дожидаясь следующего раунда, Макс сгрёб остатки своих фишек и почти демонстративно бросил их на зеро. Глухой стук эхом разнёсся по столу.
+Пьер поднял взгляд. Впервые за весь вечер идеально выверенная маска крупье дала почти незаметную трещину. Он медленно прикрыл глаза, и с его губ сорвалось почти беззвучное, сдавленное:
+– Mon Dieu…
+Джордж тоже замер. Кольцо впервые за вечер перестало вращаться.
+– Макс…
+– Ну что ещё?
+– Я ещё не поставил.
+Ландо медленно поставил бокал на стол.
+Он посмотрел сначала на Макса. Потом на Джорджа. Опять на Макса.
+– Ты сейчас серьёзно? Нет-нет... не отвечай.
+– Но…
+– Как я. А не как я ставил пять минут назад.
+
+С другого конца зала донёсся тихий звон бокалов. Шарль, успевший дойти почти до бара, прикрыл глаза ладонью.
+Карлос, протиравший стакан полотенцем, вопросительно поднял бровь.
+– Что?
+Леклер едва слышно выдохнул.
+– Сейчас опять начнётся.
+Карлос проследил за его взглядом. Увидел перекошенное лицо Макса. Спокойного Джорджа. Ландо, который уже начал складываться пополам от смеха.
+И Пьера, сохранявшего настолько безупречное самообладание, что именно это выглядело самым подозрительным.
+– Мне звать охрану?
+– Пока нет.
+– Бедный Пьер.
+– Бедный стол, – машинально поправил Шарль.
+  </textarea>
+
+  <script>
+    var raw = document.getElementById('rawText').value;
+    var blocks = raw.trim().split(/\n\s*\n/);
+    var html = '';
+
+    for (var i = 0; i < blocks.length; i++) {
+      var lines = blocks[i].split('\n');
+      var paragraphs = '';
+      for (var j = 0; j < lines.length; j++) {
+        var line = lines[j].trim();
+        if (!line) continue;
+        var formattedLine = line.replace(/\*(.*?)\*/g, '<em>$1</em>');
+        var isDialogue = /^[–—-]/.test(line);
+        paragraphs += '<p class="' + (isDialogue ? 'dialogue' : '') + '">' + formattedLine + '</p>';
+      }
+      var divider = i < blocks.length - 1 ? '<div class="scene-divider">• • •</div>' : '';
+      html += '<div class="scene-block">' + paragraphs + '</div>' + divider;
+    }
+
+    document.getElementById('chapterBody').innerHTML = html;
+
+    window.addEventListener('scroll', function() {
+      var scrollTop = window.scrollY;
+      var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      document.getElementById('progressBar').style.width = progress + '%';
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (
+        (e.ctrlKey || e.metaKey) &&
+        ['c', 'C', 'с', 'С', 'a', 'A', 'ф', 'Ф', 's', 'S', 'ы', 'Ы', 'u', 'U', 'г', 'Г', 'p', 'P', 'з', 'З'].indexOf(e.key) !== -1
+      ) {
+        e.preventDefault();
+      }
+      if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].indexOf(e.key.toUpperCase()) !== -1)) {
+        e.preventDefault();
+      }
+    });
+  </script>
+</body>
+</html>
