@@ -76,9 +76,6 @@
       color: var(--gold);
       margin-bottom: 28px;
       padding-left: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     .doc-label {
@@ -107,7 +104,6 @@
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 10px;
       transition: all 0.2s ease;
       border: 1px solid transparent;
     }
@@ -122,11 +118,6 @@
       background: var(--gold-glow);
       border-color: var(--gold-dim);
       font-weight: 500;
-    }
-
-    .nav-suit {
-      font-size: 12px;
-      opacity: 0.8;
     }
 
     .sidebar-footer {
@@ -255,7 +246,7 @@
       text-align: center;
       color: var(--gold);
       opacity: 0.45;
-      font-size: 13px;
+      font-size: 14px;
       letter-spacing: 0.6em;
       margin: 28px 0;
     }
@@ -331,17 +322,17 @@
   </div>
 
   <aside class="sidebar" id="sidebar">
-    <div class="brand">♠ VIP Table № 4</div>
+    <div class="brand">VIP Table № 4</div>
     <div class="doc-label">Вкладки документа</div>
     <ul class="nav-list" id="navList">
       <li class="nav-item active" data-chapter="1" onclick="loadChapter(1)">
-        <span class="nav-suit">♠</span> 1. Счастливчик
+        1. Счастливчик
       </li>
       <li class="nav-item" data-chapter="2" onclick="loadChapter(2)">
-        <span class="nav-suit">♥</span> 2. Ставка
+        2. Ставка
       </li>
       <li class="nav-item" data-chapter="3" onclick="loadChapter(3)">
-        <span class="nav-suit">♦</span> 3. Сплит
+        3. Сплит
       </li>
     </ul>
     <div class="sidebar-footer">
@@ -351,7 +342,7 @@
   </aside>
 
   <div class="shield-banner" id="shieldBanner">
-    ♠ Режим защиты контента · Вернитесь в окно для чтения
+    Режим защиты контента · Вернитесь в окно для чтения
   </div>
 
   <main class="main-wrapper" id="mainWrapper">
@@ -659,7 +650,7 @@ const formattedLine = line.replace(/*(.*?)*/g, '$1');
 const isDialogue = /^[–—-]/.test(line);
 return <p class="${isDialogue ? 'dialogue' : ''}">${formattedLine}</p>;
 }).join('');
-const divider = index < blocks.length - 1 ? '♦ ♦ ♦' : '';
+const divider = index < blocks.length - 1 ? '• • •' : '';
 return <div class="scene-block">${paragraphs}</div>${divider};
 }).join('');
 }
