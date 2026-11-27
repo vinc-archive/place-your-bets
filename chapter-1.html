@@ -272,7 +272,7 @@
 
     for (var i = 0; i < lines.length; i++) {
       var line = lines[i].trim();
-      if (!line) continue;
+      if (!line) { html += '<div style="height: 22px;"></div>'; continue; }
       if (line === '• • •' || line === '***') {
         html += '<div class="scene-divider">• • •</div>';
         continue;
