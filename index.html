@@ -45,32 +45,6 @@
     .container {
       width: 100%;
       max-width: 680px;
-      transition: filter 0.2s ease, opacity 0.2s ease;
-    }
-
-    .container.blurred {
-      filter: blur(16px);
-      opacity: 0.35;
-      pointer-events: none;
-    }
-
-    .shield-banner {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(16, 20, 18, 0.96);
-      border: 1px solid var(--gold-dim);
-      color: var(--gold);
-      padding: 16px 26px;
-      border-radius: 10px;
-      font-family: 'Inter', sans-serif;
-      font-size: 13px;
-      letter-spacing: 0.04em;
-      z-index: 999;
-      text-align: center;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
     }
 
     .top-label {
@@ -214,9 +188,10 @@
 
     .chapter-card-pov {
       font-family: 'Inter', sans-serif;
-      font-size: 12px;
+      font-size: 11.5px;
+      letter-spacing: 0.1em;
       color: var(--text-muted);
-      margin-top: 2px;
+      margin-top: 3px;
     }
 
     .chapter-arrow {
@@ -255,11 +230,7 @@
 </head>
 <body oncontextmenu="return false;" oncopy="return false;" oncut="return false;" ondragstart="return false;">
 
-  <div class="shield-banner" id="shieldBanner">
-    Режим защиты контента · Вернитесь в окно для чтения
-  </div>
-
-  <div class="container" id="mainContainer">
+  <div class="container">
     <div class="top-label">Las Vegas · VIP Table № 4</div>
     <h1 class="book-title">Place Your Bets</h1>
     <div class="author-line">by vinc-archive · Formula 1 AU</div>
@@ -272,10 +243,10 @@
       <div class="meta-row">
         <div class="meta-key">Персонажи</div>
         <div class="meta-val">
+          <span class="pill code">PG10</span>
           <span class="pill code">GR63</span>
           <span class="pill code">MV3</span>
           <span class="pill code">LN4</span>
-          <span class="pill code">PG10</span>
           <span class="pill code">CL16</span>
           <span class="pill code">CS55</span>
         </div>
@@ -287,6 +258,7 @@
           <span class="pill tag">Лас-Вегас</span>
           <span class="pill tag">Рулетка</span>
           <span class="pill tag">Несколько POV</span>
+          <span class="pill tag">Тайны и интриги</span>
         </div>
       </div>
     </div>
@@ -302,7 +274,7 @@
       <a href="chapter-1.html" class="chapter-card">
         <div>
           <div class="chapter-card-title">1. Счастливчик</div>
-          <div class="chapter-card-pov">POV Max</div>
+          <div class="chapter-card-pov">MV3</div>
         </div>
         <div class="chapter-arrow">Читать →</div>
       </a>
@@ -310,7 +282,7 @@
       <a href="chapter-2.html" class="chapter-card">
         <div>
           <div class="chapter-card-title">2. Ставка</div>
-          <div class="chapter-card-pov">POV Charles</div>
+          <div class="chapter-card-pov">CL16</div>
         </div>
         <div class="chapter-arrow">Читать →</div>
       </a>
@@ -318,7 +290,7 @@
       <a href="chapter-3.html" class="chapter-card">
         <div>
           <div class="chapter-card-title">3. Сплит</div>
-          <div class="chapter-card-pov">POV Pierre</div>
+          <div class="chapter-card-pov">PG10</div>
         </div>
         <div class="chapter-arrow">Читать →</div>
       </a>
@@ -326,7 +298,7 @@
       <div class="chapter-card upcoming">
         <div>
           <div class="chapter-card-title">4. Скоро…</div>
-          <div class="chapter-card-pov">POV Lando</div>
+          <div class="chapter-card-pov">LN4</div>
         </div>
         <div class="chapter-arrow">В работе</div>
       </div>
@@ -349,28 +321,7 @@
       if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].indexOf(e.key.toUpperCase()) !== -1)) {
         e.preventDefault();
       }
-      if (e.key === 'PrintScreen') {
-        enableBlur();
-      }
     });
-
-    var container = document.getElementById('mainContainer');
-    var banner = document.getElementById('shieldBanner');
-
-    function enableBlur() {
-      container.classList.add('blurred');
-banner.style.display = 'block';
-}
-function disableBlur() {
-container.classList.remove('blurred');
-banner.style.display = 'none';
-}
-window.addEventListener('blur', enableBlur);
-window.addEventListener('focus', disableBlur);
-document.addEventListener('visibilitychange', function() {
-if (document.hidden) {
-enableBlur();
-} else {
-disableBlur();
-}
-});
+  </script>
+</body>
+</html>
