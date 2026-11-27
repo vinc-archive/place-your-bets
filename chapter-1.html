@@ -265,16 +265,15 @@
 – Бедный стол, – машинально поправил Шарль.
   </textarea>
 
-  <script>
+    <script>
     var raw = document.getElementById('rawText').value;
     var lines = raw.trim().split('\n');
     var html = '';
 
     for (var i = 0; i < lines.length; i++) {
       var line = lines[i].trim();
-      if (!line) { html += '<div style="height: 22px;"></div>'; continue; }
-      if (line === '• • •' || line === '***') {
-        html += '<div class="scene-divider">• • •</div>';
+      if (!line) {
+        html += '<div style="height: 22px;"></div>';
         continue;
       }
       var formattedLine = line.replace(/\*(.*?)\*/g, '<em>$1</em>');
